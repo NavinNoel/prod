@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<title>Whitehall Mennonite Church</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="setRequestedOption()">
+
+	<script type="text/javascript" src="commonlib.js"></script>
+	
+	<script type="text/javascript">
+	
+	function setRequestedOption() {
+		document.getElementById("mainmenu").innerHTML = mainMenu();
+		document.getElementById("mainmenu-home").className = 'active';
+		//runSlideShow();
+		
+	}
+	
+	function setAge(dobString) {
+		var dob = new Date(dobString);
+		var oForm = document.forms[0];
+		oForm.elements["Age"].value = Math.floor(((new Date()) - dob)/(365*24*60*60*1000));
+	}
+	
+	</script>
+	<table>
+		<tbody>
+		<tr>
+			<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+			<td>
+				<div id='heading'>Whitehall Mennonite Church</div>
+				<div id='tobepeopleofGod'>
+					To be the people of God, Inviting others to know Him.
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<div id='mainmenu'></div>
+	
+	<div id='vbsheading'>
+		<br><strong>Vacation Bible School—Online Registration</strong><br><br>
+		Whitehall Mennonite Church & Egypt Community Church Presents...<br>
+		<img height="90px" src="images/vbs2015-img1.png"><br>
+		Vacation Bible School, July 27 - July 31, 6:30 - 8:30 pm<br>
+		Location: Whitehall Menonite Church, <br>4138 Wilson Street, <br>Whitehall, PA 18052<br>
+	</div>
+	
+	<div id='vbsform'>
+	  <div id="vbsformty"><br>Thanks for using the Online Registration form.<br><br>
+	    If you have any questions please don’t hesitate to call us at 610-262-1270<br>
+	  </div>
+	  <div id="tybuttons">
+         <a id="button-submit" href="vbsreg.html">Register another Child</a>  
+         <a id="button-submit" href="index.html">Return to Home page</a>
+      </div>  
+	</div>
+	
+</body>
+</html> 

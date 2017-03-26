@@ -1,0 +1,15 @@
+PodcastEpisode item = new PodcastEpisode("Test", "Desc", "images/WMC_bright_small.jpg", "Whitehall Mennonite", "key words", "http://whitehallmennonitechurch.podomatic.com/enclosure/2012-09-30T12_47_19-07_00.mp3");
+Channel channel = new Channel("Header title", "http://www.whitehallmennonitechurch.org/podcast.html","desc","language","author","date");
+channel.addItem(item);
+Rss x = new Rss(new Version("1.0"), channel);
+MyUtilities.saveRssToXMLFile("podcast.xml", x);
+//
+FileInputStream fis = new FileInputStream("podcast.xml");
+RssConverter converter = new RssConverter();
+Rss rss = converter.fromXml(fis);
+//
+
+PodcastEpisode episode = new PodcastEpisode("Test", "Desc", "images/WMC_bright_small.jpg", "Whitehall Mennonite", "key words", "http://whitehallmennonitechurch.podomatic.com/enclosure/2012-09-30T12_47_19-07_00.mp3");
+Podcast x = new Podcast(new java.util.ArrayList<PodcastEpisode>());
+x.addEpisode(episode);
+converter.toXML(x, new FileOutputStream("podcast.xml"));

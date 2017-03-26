@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Whitehall Mennonite Church</title>
+</head>
+
+<body onload="setRequestedOption()">
+
+<script type="text/javascript" src="commonlib.js"></script>
+
+<script type="text/javascript">
+
+function setRequestedOption() {
+	document.getElementById("mainmenu").innerHTML = mainMenu();
+	document.getElementById("mainmenu-blog").className = 'active';
+}
+
+</script>
+
+<table>
+	<tbody>
+	<tr>
+		<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+		<td>
+			<div id='heading'>Whitehall Mennonite Church</div>
+			<div id='tobepeopleofGod'>
+				To be the people of God, Inviting others to know Him.
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<div id='mainmenu'></div>
+
+<div id='blog'>
+	<iframe width="900" height="580" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" src="http://wmcfun.blogspot.com"></iframe><br />
+</div>
+</body>
+</html> 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<title>Whitehall Mennonite Church</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="initialize()">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="commonlib.js"></script>
+	
+	<script type="text/javascript">
+	function initialize() {
+		var todaysDate = new Date();
+		sundayDate = todaysDate.getDate() + 1 + (6-todaysDate.getDay());
+		var year = todaysDate.getFullYear().toString();
+		var month = (todaysDate.getMonth() < 9) ? "0" + (todaysDate.getMonth()+1).toString() : (todaysDate.getMonth()+1).toString();
+		var date = (sundayDate < 10) ? "0" + sundayDate.toString() : sundayDate.toString();
+		document.getElementById('bulletinDate').value = year + '-' + month + '-' + date;
+	}
+	</script>
+	
+	<table>
+		<tbody>
+		<tr>
+			<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+			<td>
+				<div id='heading'>Whitehall Mennonite Church</div>
+				<div id='tobepeopleofGod'>
+					To be the people of God, Inviting others to know Him.
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<div id='vbsheading'>
+		<br><strong>WMC Bulletin Upload</strong><br><br>
+	</div>
+	
+	<div id='vbsform'>
+		<form action="scripts/uploader.php" method="post" enctype="multipart/form-data">
+			<label>Bulletin date: </label>
+			<input type="date" id="bulletinDate" name="bulletinDate" pattern="dd-mm-yyyy"/>
+			<input type="file" id="file" name="file" />
+			<button type="submit">Upload</button>
+		</form>
+	</div>
+	
+</body>
+</html> 

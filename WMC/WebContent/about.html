@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Whitehall Mennonite Church</title>
+</head>
+
+<body onload="setRequestedOption()">
+
+<script type="text/javascript" src="commonlib.js"></script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">
+function setAboutElement(option)
+{
+	var about = document.getElementById("about");
+	switch (option) {
+	case "pastor":
+		about.innerHTML="<div id='pastorphoto'><img src=\"images/pastorphoto.jpg\" alt=\"Pastor Rose\" width=\"150\" height=\"200\"/></div>"
+			+"<div id='aboutpastor'>"
+				+"<p>Greetings and Welcome!</p>"
+				+"<p>I am excited to serve as the pastor at Whitehall Mennonite Church. Originally from Iowa, I have spent the last 20 years living on the East Coast (but am still a mid-westerner at heart).  I graduated from Messiah College in 1991, and began a career in teaching high school history and the social sciences, first in Delaware and then in Trenton, NJ.  I loved working with young people-teaching, coaching, and mentoring-but I grew weary of the grading!  Eventually, the Lord led me to me to seminary and in 2005, I earned my M.Div. from Bethel Seminary of the East.  In 2006, I began a two-year volunteer program through Mennonite Mission Network as a Unit Director of the Service Adventure Program in Johnstown, PA.  Here I was able to mentor and disciple young people with whom I lived in community-as well as test out my pastoral calling by preaching and serving at First Mennonite Church of Johnstown.  In August 2008, the Lord called me to serve as interim pastor at Stahl Mennonite Church, in Johnstown, and on February 7, 2010, I was installed at Whitehall.</p>"
+				+"<p>I am the youngest of six children and maintain close relationships with my siblings, nieces and nephews, and their children.  I have many interests, including sports, writing, reading, quilting, and hiking!   Though it's been cold and snowy since I arrived, I am enjoying the beauty of the Lehigh Valley-and can't wait to explore the region this spring!   God has blessed me richly with wonderful friends and family and I look forward to developing even more friendships here.</p>"
+				+"<p>Whitehall is composed of a diverse group of people a church who have made a choice to commit themselves to God and one another.  I have been impressed and challenged by the practicality of their faith.  I am passionate about helping them continue to grow and stretch in their faith and believe God will do a great work here in the coming years.</p>"
+				+"<p>Grace and Peace,</p>"
+				+"<p>Pastor Rose</p>"
+			+"</div>";
+		break;
+	case "facility":
+		about.innerHTML="<h3>About our facility</h3>"
+			+"<b>Rental space is available for a variety of uses.</b>"
+			+"<p>We are a church located in the Lehigh Valley area (Egypt/Whitehall Zip:18052), looking to share and rent our space with others in our community. It may be rented for special occassions or on a longer term basis.</p>"
+			+"<p>This may include, but not be limited to a office space, craft-scrapbooking class, music lessons, cooking class, tutoring or after school program, or another group looking to share worship space.</p>"
+			+"<p>Our facility has a sanctuary, classroom and/or office space, nursery and bathroom, kitchen and fellowship hall, TV and game room. There is also wi-fi available.</p>"
+			+"<br/>"
+			+"<embed type=\"application/x-shockwave-flash\" src=\"https://picasaweb.google.com/s/c/bin/slideshow.swf\" width=\"500\" height=\"350\" flashvars=\"host=picasaweb.google.com&captions=1&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F105125549268286919797%2Falbumid%2F5796647285669818097%3Falt%3Drss%26kind%3Dphoto%26hl%3Den_US\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>";
+		break;
+	case "mennonites":
+		about.innerHTML="<iframe width=\"790\" height=\"580\" src=\"http://www.thirdway.com/menno/?Topic=23|Basic+Beliefs\"></iframe><br/>";
+		break;
+	case "confession":
+		about.innerHTML="<iframe width=\"790\" height=\"580\" src=\"http://www.mennolink.org/doc/cof/summary.html\"></iframe>";
+		break;
+	default:
+		about.innerHTML="<h3>About Us</h3>"
+			+"<p>We are a community church serving Christ in the Lehigh Valley. We are made up of diverse persons who are united by a passion to follow Jesus Christ in worship, service, and celebration. We will welcome anyone into our service.</p>"
+			+"<p>Pastor:   Rose Bender</p>"
+			+"<p>Founded:   1989</p>"
+			+"<p>History:   We began in 1988 as the result of a vision by our first pastor, Robert Walters. Bob's unrelenting passion and endless love saw the gathering of a group of people who were determined to found a faithful Mennonite congregation in the North Lehigh area. Today we are a growing community church seeking to be a faithful witness to the presence of God's Kingdom here and now.</p>"
+			+"<br/>"
+			+"<h3>Our Mission Statement</h3>"
+			+"<p>1. To be a worshipping community of God.  We gather around our God and Savior to worship Him.</p>"
+			+"<p>2. To nurture, disciple and build up individuals into spiritual maturity. To encourage all to have a vibrant relationship with Christ.</p>"
+			+"<p>3. To live our biblical Anabaptist identity and theology including evangelism, peace, justice, simple living and caring for God's creation.</p>"
+			+"<p>4. To have concern, love, acceptance for, and fellowship with each other.</p>"
+			+"<p>5. To be a helping and loving servant people, following the model of Christ toward all humanity, reaching out to those nearby and around the world.</p>";
+		option = 'aboutus';
+		break;
+	}
+	document.getElementById('li-'+option).className = 'active';
+}
+
+function setRequestedOption() {
+	var about = document.getElementById("about");
+	
+	document.getElementById("mainmenu").innerHTML = mainMenu();
+	document.getElementById("mainmenu-about").className = 'active';
+	
+	var parameterName = '?option=';
+	option = window.location.href.substring(window.location.href.indexOf(parameterName, 0)+parameterName.length);
+	setAboutElement(option);
+}
+
+</script>
+
+<table>
+	<tbody>
+	<tr>
+		<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+		<td>
+			<div id='heading'>Whitehall Mennonite Church</div>
+			<div id='tobepeopleofGod'>
+				To be the people of God, Inviting others to know Him.
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<div id='mainmenu'></div>
+
+<div id='content'>
+
+	<div id='left-menu'>
+		<ul>
+		   <li id='li-aboutus'><a href='about.html'><span>About Us</span></a></li>
+		   <li id='li-pastor'><a href='about.html?option=pastor'><span>Our Pastor</span></a></li>
+		   <li id='li-facility'><a href='about.html?option=facility'><span>Our Facility</span></a></li>
+		   <li id='li-mennonites'><a href='about.html?option=mennonites'><span>Who are the Mennonites?</span></a></li>
+		   <li id='li-confession'><a href='about.html?option=confession'><span>Confession of Faith</span></a></li>
+		</ul>
+		
+		<div id='facility-fbshare'>
+		</div>
+	</div>
+	
+	<div id='about'>
+	</div>
+	
+</div>
+</body>
+</html> 

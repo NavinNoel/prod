@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Whitehall Mennonite Church</title>
+
+	<style>
+		.tabrow {
+		    text-align: center;
+		    list-style: none;
+		    margin: 10px 0 20px;
+		    padding: 0;
+		    line-height: 24px;
+		    height: 26px;
+		    overflow: hidden;
+		    font-size: 12px;
+		    font-family: verdana;
+		    position: relative;
+		}
+		.tabrow li {
+		    border: 1px solid #AAA;
+		    background: #D1D1D1;
+		    background: -o-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+		    background: -ms-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+		    background: -moz-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+		    background: -webkit-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+		    background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+		    display: inline;
+		    position: relative;
+		    z-index: 0;
+		    border-top-left-radius: 6px;
+		    border-top-right-radius: 6px;
+		    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+		    text-shadow: 0 1px #FFF;
+		    margin: 0 -5px 0 7px;
+		    padding: 0 20px;
+		    float:left;
+		}
+		.tabrow a {
+			  color: #555;
+			  text-decoration: none;
+		}
+		.tabrow li.selected {
+		    background: #FFF;
+		    color: #333;
+		    z-index: 2;
+		    border-bottom-color: #FFF;
+		}
+		.tabrow:before {
+		    position: absolute;
+		    content: " ";
+		    width: 100%;
+		    bottom: 0;
+		    left: 0;
+		    border-bottom: 1px solid #AAA;
+		    z-index: 1;
+		}
+		.tabrow li:before,
+		.tabrow li:after {
+		    border: 1px solid #AAA;
+		    position: absolute;
+		    bottom: -1px;
+		    width: 5px;
+		    height: 5px;
+		    content: " ";
+		}
+		.tabrow li:before {
+		    left: -6px;
+		    border-bottom-right-radius: 6px;
+		    border-width: 0 1px 1px 0;
+		    box-shadow: 2px 2px 0 #D1D1D1;
+		}
+		.tabrow li:after {
+		    right: -6px;
+		    border-bottom-left-radius: 6px;
+		    border-width: 0 0 1px 1px;
+		    box-shadow: -2px 2px 0 #D1D1D1;
+		}
+		.tabrow li.selected:before {
+		    box-shadow: 2px 2px 0 #FFF;
+		}
+		.tabrow li.selected:after {
+		    box-shadow: -2px 2px 0 #FFF;
+		}
+	</style>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		$(function() {
+			$("ul.tabrow > li").click(function(e) {
+			  e.preventDefault();
+			  $("li").removeClass("selected");
+			  $(this).addClass("selected");
+			  
+			  setGalleryElement(this.id);
+			  
+			});
+		});
+		
+	</script>
+</head>
+
+<body onload="setRequestedOption()">
+
+<script type="text/javascript" src="commonlib.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<div id="fb-root"></div>
+<script>
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script type="text/javascript">
+
+function setGalleryElement(option)
+{
+ 	$("li").removeClass("selected");
+	switch (option) {
+	case "PLAY":
+		$("#PLAY").addClass("selected");
+		$("#podcast-feed").html("<iframe src='http://whitehallmennonitechurch.podomatic.com/embed/frame/multi/0?json_url=http%3A%2F%2Fwhitehallmennonitechurch.podomatic.com%2Fembed%2Fmulti%2F0%3Fcolor%3Df8ae06%26autoPlay%3Dfalse%26facebook%3Dfalse%26height%3D405%26objembed%3D0%26width%3D540' height='405' width='540' frameborder='0' marginheight='0' marginwidth='0' scrolling='no'></iframe>");
+		break;
+	case "DOWNLOAD":
+		$("#DOWNLOAD").addClass("selected");
+		initialize();
+		break;
+	default:
+		$("#PLAY").addClass("selected");
+	  $("#podcast-feed").html("<iframe src='http://whitehallmennonitechurch.podomatic.com/embed/frame/multi/0?json_url=http%3A%2F%2Fwhitehallmennonitechurch.podomatic.com%2Fembed%2Fmulti%2F0%3Fcolor%3Df8ae06%26autoPlay%3Dfalse%26facebook%3Dfalse%26height%3D405%26objembed%3D0%26width%3D540' height='405' width='540' frameborder='0' marginheight='0' marginwidth='0' scrolling='no'></iframe>");
+		option = 'play';
+		break;
+	}
+}
+
+function setRequestedOption() {
+	var about = document.getElementById("about");
+	
+	document.getElementById("mainmenu").innerHTML = mainMenu();
+	document.getElementById("mainmenu-gallery").className = 'active';
+	
+	var parameterName = '?option=';
+	option = window.location.href.substring(window.location.href.indexOf(parameterName, 0)+parameterName.length);
+	setGalleryElement(option);
+	
+}
+
+var podcastItems;
+
+function showAudioPlayer(i) {
+	var url = podcastItems[i].link.replace("entry", "enclosure")+".mp3";
+    var msgCell = document.getElementById("pctable").getElementsByTagName("tr")[i+1].getElementsByTagName("td")[2];
+    var x = msgCell.getElementsByTagName("div");
+	for (var i = 0; i < x.length; i++) {
+		if (x[i].id == "audio-player") {
+		    x[i].innerHTML = "<audio src=\""+url+"\" controls=\"controls\"></audio>";
+	        break;
+		}
+	}
+}
+
+function showDetails(i) {
+	var details = document.createElement("div");
+	details.innerHTML = podcastItems[i].content;
+    var x = details.getElementsByTagName("img")[0];
+    x.parentNode.removeChild(x);
+    var msgCell = document.getElementById("pctable").getElementsByTagName("tr")[i+1].getElementsByTagName("td")[2];
+    var moreBtn = msgCell.getElementsByTagName("div")[0];
+    if (moreBtn.innerHTML == "More...") {
+        moreBtn.innerHTML = "...Less";
+        var moreDetails = document.createElement("div");
+        moreDetails.setAttribute("id", "more-detail");
+        moreDetails.appendChild(details);
+    	msgCell.appendChild(moreDetails);
+    }
+    else {
+        moreBtn.innerHTML = "More...";
+    	var x = msgCell.getElementsByTagName("div");
+    	for (var i = 0; i < x.length; i++) {
+    		if (x[i].id == "more-detail") {
+    	        x[i].parentNode.removeChild(x[i]);
+    	        break;
+    		}
+    	}
+    }
+}
+
+google.load("feeds", "1");
+
+function initialize() {
+  var feed = new google.feeds.Feed("http://whitehallmennonitechurch.podomatic.com/rss2.xml?x="+(new Date()).getTime());
+  feed.setNumEntries(52);
+  feed.load(function(result) {
+	podcastItems = result.feed.entries;
+    if (!result.error) {
+      var container = document.getElementById("podcast-feed");
+      container.innerHTML = null;
+      var pcTable = document.createElement("table");
+      pcTable.setAttribute("id", "pctable");
+      var pcTableTHead = document.createElement("thead");
+      
+      var tableRow = document.createElement("tr");
+      var tableCell = document.createElement("th");
+      tableCell.appendChild(document.createTextNode("Date"));
+      tableRow.appendChild(tableCell);
+      
+      tableCell = document.createElement("th");
+      tableCell.appendChild(document.createTextNode("Title"));
+      tableRow.appendChild(tableCell);
+      
+      tableCell = document.createElement("th");
+      tableCell.appendChild(document.createTextNode("Message"));
+      tableRow.appendChild(tableCell);
+      
+      pcTableTHead.appendChild(tableRow);
+      
+      var pcTableTBody = document.createElement("tbody");
+      
+      for (var i = 0; i < result.feed.entries.length; i++) {
+          var entry = result.feed.entries[i];
+          
+          tableRow = document.createElement("tr");
+          
+          tableCell = document.createElement("td");
+          //var pubDate = new Date(entry.publishedDate);
+          var pubDate = new Date(entry.link.substring(52,62)+' EST');
+          
+          tableCell.appendChild(document.createTextNode(pubDate.toDateString()));
+          tableCell.setAttribute("width", "110px");
+          tableCell.setAttribute("valign", "top");
+          tableRow.appendChild(tableCell);
+          
+          var p1 = document.createElement("x");
+          p1.innerHTML = entry.content;
+          p1 = p1.getElementsByTagName("img")[0];
+          p1.setAttribute("width", "100%");
+          var speakerPicture = document.createElement("div");
+          speakerPicture.setAttribute("class", "mp3img");
+          speakerPicture.appendChild(p1);
+          
+          tableCell = document.createElement("td");
+          var url = entry.link.replace("entry", "enclosure")+".mp3";
+          var l1 = document.createElement("a");
+          //l1.setAttribute("href", url);
+          l1.appendChild(document.createTextNode(entry.title));
+          var link = document.createElement("div");
+          link.setAttribute("class", "mp3link");
+          link.appendChild(l1);
+          var btn = document.createElement("div");
+          btn.setAttribute("class", "mp3btn");
+          btn.innerHTML = "<div onclick=\"window.open('"+url+"')\" class=\"button\" style=\"height: 17px; width: 100px;\">Download MP3</div>";
+          tableCell.appendChild(link);
+          tableCell.appendChild(speakerPicture);
+          tableCell.appendChild(btn);
+          tableCell.setAttribute("width", "325px");
+          tableCell.setAttribute("valign", "top");
+          tableRow.appendChild(tableCell);
+          
+          tableCell = document.createElement("td");
+          var div = document.createElement("div");
+          div.innerHTML = entry.content;
+          var x = div.getElementsByTagName("img")[0];
+          x.parentNode.removeChild(x);
+          x = div.getElementsByTagName("br")[0];
+          x.parentNode.removeChild(x);
+          if (div.getElementsByTagName("p").length == 0) {
+              x = div;
+          } else {
+              x = div.getElementsByTagName("p")[0];
+          }
+          
+          var titleLine = document.createElement("div");
+          titleLine.setAttribute("id", "title-line");
+          titleLine.setAttribute("style", "width: 390px; height: 25px");
+          titleLine.appendChild(x);
+          tableCell.setAttribute("width", "440px");
+          tableCell.setAttribute("valign", "top");
+          var player = document.createElement("div");
+          player.setAttribute("id", "audio-player");
+          //player.innerHTML = "<embed type=\"application/x-shockwave-flash\" src=\"http://www.google.com/reader/ui/3523697345-audio-player.swf\" flashvars=\"audioUrl="+url+"\" width=\"350\" height=\"27\" quality=\"best\"></embed>";
+          //player.innerHTML = "<div class=\"play-message\" onclick=\"showAudioPlayer("+i+")\" style=\"width: 60px; height: 25px; padding-top: 5px;\">Play</div>";
+          player.innerHTML = "<img src=\"images\\Play.png\" class=\"play-message\" onclick=\"showAudioPlayer("+i+")\" style=\"width: 38px; \"></img>";
+          var moreBtn = document.createElement("div");
+          moreBtn.setAttribute("id", "more-btn");
+          moreBtn.setAttribute("onclick", "showDetails("+i+")");
+          moreBtn.setAttribute("class", "button");
+          moreBtn.setAttribute("style", "height: 15px; width: 40px;");
+          moreBtn.innerHTML = "More...";
+          
+          tableCell.appendChild(moreBtn);
+          tableCell.appendChild(titleLine);
+          tableCell.appendChild(player);
+          tableRow.appendChild(tableCell);
+          
+          pcTableTBody.appendChild(tableRow);
+      }
+      
+      pcTable.appendChild(pcTableTHead);
+      pcTable.appendChild(pcTableTBody);
+      container.appendChild(pcTable);
+      
+    }
+  });
+}
+//google.setOnLoadCallback(initialize);
+
+</script>
+
+<table>
+	<tbody>
+	<tr>
+		<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+		<td>
+			<div id='heading'>Whitehall Mennonite Church</div>
+			<div id='tobepeopleofGod'>
+				To be the people of God, Inviting others to know Him.
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<div id='mainmenu'></div>
+
+<div id='content'>
+
+	<div id='podcast-subscribe-tools'>
+		<table>
+			<tbody>
+			<tr>
+				<td>
+					<a href="itpc://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/ituneslogo.png" height="50"/></a>
+				</td> 
+				<td width="120px" align="center">
+					<a href="http://fusion.google.com/add?feedurl=http://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/googlefeed.png" height="16"/></a>
+				</td>
+				<td>
+					<a href="http://add.my.yahoo.com/rss?url=http://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/yahoofeed.png" height="16"/></a>
+				</td>
+				<td width="50px" align="center">
+					<a href="http://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/rsslogo.jpg" height="30"/></a>
+				</td>
+				<td>
+					<div class="fb-like" data-href="http://whitehallmennonitechurch.org/podcast.html" data-send="true" data-width="250" data-show-faces="false" data-action="recommend"></div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<ul class="tabrow">
+	    <li id='PLAY' class='selected'><a href="#">Play</a></li>
+	    <li id='DOWNLOAD'><a href="#">Download</a></li>
+	</ul>
+
+	<div id='podcast-feed'></div>
+</div>
+</body>
+</html> 

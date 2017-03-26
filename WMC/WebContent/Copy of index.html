@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+	
+	<style type="text/css">
+	@import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");
+	</style>
+
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load("gdata", "1.x", { packages : ["calendar"] });
+    </script>
+	<script type="text/javascript" src="calevents.js"></script>
+    <script type="text/javascript">
+    
+      google.setOnLoadCallback(_run);
+    </script>
+    
+    <script type="text/javascript">
+    /*
+    *  How to load a feed via the Feeds API.
+    */
+    
+    google.load("feeds", "1");
+    
+    // Our callback function, for when a feed is loaded.
+    function feedLoaded(result) {
+      if (!result.error) {
+        // Grab the container we will put the results into
+        var container = document.getElementById("sundayinfo");
+        container.innerHTML = '';
+        var dataError = false;
+    
+        // Loop through the feeds, putting the titles onto the page.
+        // Check out the result object for a list of properties returned in each entry.
+        // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
+        for (var i = 0; i < result.feed.entries.length; i++) {
+          var entry = result.feed.entries[i];
+          if (entry.content.search("#REF!") > 0) {
+        	  dataError = true;
+        	  break;
+          }
+          else {
+              var div = document.createElement("div");
+              if (entry.title == 'Sunday') {
+            	  var dateStr = (new Date(entry.content.slice(7))).toDateString().slice(4);
+                  div.appendChild(document.createTextNode('Sunday, '+dateStr));
+              }
+              else {
+                  div.appendChild(document.createTextNode(entry.title+': '+entry.content.slice(7)));
+              }
+              container.appendChild(div);
+          }
+        }
+        if (dataError) { 
+        	container.innerHTML = '';
+        }
+        else {
+            var hr = document.createElement("hr");
+            container.appendChild(hr);
+        }
+      }
+    }
+    
+    function OnLoad() {
+      // Create a feed instance that will grab WMC's feed.
+      var feed = new google.feeds.Feed("https://spreadsheets.google.com/feeds/list/0AqXbLbDlsyRndGp6QklEMGRvb25qUVlSNGhYQ3FIc2c/od6/public/basic?alt=atom"
+    		                             +"&x="+(new Date()).getTime());
+    
+      // Calling load sends the request off.  It requires a callback function.
+      feed.load(feedLoaded);
+    }
+    
+    google.setOnLoadCallback(OnLoad);
+    </script>
+
+	<title>Whitehall Mennonite Church</title>
+</head>
+
+<body onload="setRequestedOption()">
+
+	<script type="text/javascript" src="commonlib.js"></script>
+	
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	<script type="text/javascript">
+	
+	var Pic = new Array() 
+	
+	Pic[0] = 'images/headerpic1.jpg'
+	Pic[1] = 'images/headerpic.jpg'
+	
+	//I’ve given you four pictures there, but of course if you wanted more you’d simply add Pic[4] = ‘YourImage/pic5.jpg’ and so on. 
+	
+	//Set slideShowSpeed (milliseconds) – make it quicker or slower by adjusting this figure: 
+	var slideShowSpeed = 5000
+	
+	//Duration of crossfade (seconds) – make the fade from one image to another quicker or slower by adjusting this figure:
+	var crossFadeDuration = 2
+	
+	//No need to edit
+	var t
+	var j = 0
+	var p = Pic.length
+	
+	var preLoad = new Array()
+	for (i = 0; i < p; i++){
+		preLoad[i] = new Image() 
+		preLoad[i].src = Pic[i] 
+	}
+	
+	function runSlideShow(){
+	
+		if (document.all){ 
+			document.images.SlideShow.style.filter= "blendTrans(duration=2)"
+			document.images.SlideShow.style.filter= "blendTrans(duration=crossFadeDuration)"
+			document.images.SlideShow.filters.blendTrans.Apply() 
+		 } 
+		document.images.SlideShow.src = preLoad[j].src 
+		if (document.all){ 
+			document.images.SlideShow.filters.blendTrans.Play() 
+		} 
+		j = j + 1 
+		if (j > (p-1)) j=0
+		t = setTimeout('runSlideShow()', slideShowSpeed) 
+	}
+	
+	function setRequestedOption() {
+		document.getElementById("mainmenu").innerHTML = mainMenu();
+		document.getElementById("mainmenu-home").className = 'active';
+		//runSlideShow();
+		
+	}
+	
+	</script>
+
+	<table>
+		<tbody>
+		<tr>
+			<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+			<td>
+				<div id='heading'>Whitehall Mennonite Church</div>
+				<div id='tobepeopleofGod'>
+					To be the people of God, Inviting others to know Him.
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<div id='mainmenu'></div>
+	
+	<div id='homeleft'>
+		<div id='mission'>
+		<p>We are brothers and sisters in witness; Demonstrating God's Love in Jesus Christ by sharing life together and reaching out to others.</p>
+		</div>
+		
+		<div id='pastor' title="Pastor">
+			<h3>Pastor</h3>
+			Rose Bender (484-274-5715)<br />
+			<a href="mailto:rose.bender@whitehallmennonitechurch.org">e-mail Pastor</a><br />
+		</div>
+		
+		<div id='address' title="Address">
+			<h3>Address</h3>
+			<address>
+			<a href="findus.html">
+			4138 Wilson Street<br />
+			Whitehall, PA-18052<br />
+			</a>
+			Phone: 610-262-1270<br />
+			</address>
+			<a class='email' href="mailto:info@whitehallmennonitechurch.org">info@whitehallmennonitechurch.org</a><br />
+		</div>
+		
+		<div id='facebook-find'>
+		 <a href="http://www.facebook.com/WhitehallMennoniteChurch">
+			<img alt="Find us on Facebook at http://www.facebook.com/WhitehallMennoniteChurch" src="images/fb-icon.jpg" width=40px border="none">
+		 </a>
+		</div>
+		
+		<div id='facebook-link' >
+			<div class="fb-like" data-href="http://www.facebook.com/WhitehallMennoniteChurch" data-send="true" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+		</div>
+		
+		<div id='forrent'>
+		<table>
+			<tbody>
+			<tr>
+				<td width="20%" valign="top">
+					<a href="about.html?option=facility">
+					<img src="images/forrent.jpg" alt="Available for rent" width=95% />
+					</a>
+				</td> 
+				<td width="80%">
+				<marquee behavior="slide">
+					We are looking to share and rent our space with others in our community.
+						<a href="about.html?option=facility">
+						Click here to find out more.
+						</a>
+				</marquee>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		</div>
+	
+		<div id='churchjpg' align="center">
+			<img src="images/WMC_bright.jpg" alt="Church" width=80% />
+		</div>
+	
+	</div>
+	
+	<div id='homecontent'>
+	
+		<div id='headerpic'> 
+			<img src="images/headerpic.jpg" name="SlideShow" alt="Us" width="100%"/>
+		</div>
+		
+		<div id='other-ministries'>
+			<h3>Events</h3>
+			<div id='upcomingevents'>
+				<p>Retrieving events...</p>
+			</div>
+			<hr>
+			<p>Potluck on the 1st Wednesday of each month followed by Kids connection program.</p>
+			<p>Bi-weekly Prayer group / Bible study meetings. Check our <a href="calendar.html">calendar</a> for the schedule.</p>
+			<a href="gallery.html">Watch VBS 2012 Video - Adventures on Promise Island</a>
+			<p>Thanks to all who helped with the community block party. <a href="http://www.facebook.com/WhitehallMennoniteChurch">For pictures visit us on Facebook.</a></p>
+			
+		</div>
+		
+		<div id='sunday-morning'>
+			<h3>Worship with us</h3>
+			<table>
+			<colgroup>
+				<col title="time" width="65"/> 
+				<col title="event" />
+			</colgroup>
+				<tbody>
+					<tr> <td valign="top">9:00 am</td> <td>Sunday School for adults and children age 3 and up.</td> </tr>
+					<tr> <td valign="top">10:00 am</td> <td>Worship Service.<br/>
+											Child care is provided. Fellowship immediately following the service.<br/>
+						 </td> 
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<div id="sundayinfo" align="center"></div>
+			
+			<div id="home-podcast">
+			<table>
+				<tbody>
+					<tr> 
+						<td valign="top"><a href="podcast.html"><img src="images/podcastlogo.jpg" name="Podcast" alt="Podcast" width="70"/></a></td>
+						<td><a href="podcast.html">Listen to sermons online.</a>
+							<p>They are also on iTunes - just search for Whitehall Mennonite.</p>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+			</div>	
+			
+		</div>
+		
+		<div id='allwelcome'>
+			<p>All are welcome to join us for Sunday morning worship, Sunday school or Other activities.</p>
+		</div>
+		
+		<div id='newsfeed' title="News feeds">
+		  <!-- ++Begin Dynamic Feed Wizard Generated Code++ -->
+		  <!--
+		  // Created with a Google AJAX Search and Feed Wizard
+		  // http://code.google.com/apis/ajaxsearch/wizards.html
+		  -->
+		
+		  <!--
+		  // The Following div element will end up holding the actual feed control.
+		  // You can place this anywhere on your page.
+		  -->
+		  <div id="feed-control">
+			<span style="color:#676767;font-size:10px;margin:10px;padding:4px;">Loading...</span>
+		  </div>
+		  
+		  <!-- Google Ajax Api
+		  -->
+		  <script src="http://www.google.com/jsapi?key=notsupplied-wizard"
+				  type="text/javascript"></script>
+		  
+		  <!-- Dynamic Feed Control and Stylesheet -->
+		  <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js"
+				  type="text/javascript"></script>
+		  
+		  <script type="text/javascript">
+		    function LoadDynamicFeedControl() {
+		      var feeds = [ {title: 'Franconia Mennonite', url: 'http://franconiaconference.org/feed' },
+		                    {title: 'Mennonite World Review', url: 'http://www.mennoworld.org/feeds/articles/' } ];
+		      var options = {
+		        numResults : 5,
+		        displayTime : 4000,
+		        stacked : true,
+		        horizontal : false,
+		        title : "News Feeds"
+		      };
+		      new GFdynamicFeedControl(feeds, 'feed-control', options);
+			};
+		    // Load the feeds API and set the onload callback.
+		    google.load('feeds', '1');
+		    google.setOnLoadCallback(LoadDynamicFeedControl);
+		  </script>
+		  <!-- ++End Dynamic Feed Control Wizard Generated Code++ -->
+		
+		</div>
+		
+	</div>
+</body>
+</html> 

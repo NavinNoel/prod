@@ -1,0 +1,25 @@
+<rss id="1">
+  <version id="2">
+    <value>1.0</value>
+  </version>
+  <channel id="3">
+    <title>Header title</title>
+    <link>http://www.whitehallmennonitechurch.org/podcast.html</link>
+    <description>desc</description>
+    <language>language</language>
+    <webMaster>author</webMaster>
+    <pubDate>date</pubDate>
+    <items id="4">
+      <item id="5">
+        <title>Test</title>
+        <description>Desc</description>
+        <image>images/WMC_bright_small.jpg</image>
+        <author>Whitehall Mennonite</author>
+        <keyWords>key words</keyWords>
+        <enclosureLength>0</enclosureLength>
+        <enclosureURL>http://whitehallmennonitechurch.podomatic.com/enclosure/2012-09-30T12_47_19-07_00.mp3</enclosureURL>
+        <duration>0</duration>
+      </item>
+    </items>
+  </channel>
+</rss>

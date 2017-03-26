@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<title>Whitehall Mennonite Church</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="setRequestedOption()">
+
+	<script type="text/javascript" src="commonlib.js"></script>
+	
+	<script type="text/javascript">
+	
+	function setRequestedOption() {
+		document.getElementById("mainmenu").innerHTML = mainMenu();
+		document.getElementById("mainmenu-home").className = 'active';
+		//runSlideShow();
+		
+	}
+	
+	</script>
+	<table>
+		<tbody>
+		<tr>
+			<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+			<td>
+				<div id='heading'>Whitehall Mennonite Church</div>
+				<div id='tobepeopleofGod'>
+					To be the people of God, Inviting others to know Him.
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<div id='mainmenu'></div>
+	
+</body>
+</html> 

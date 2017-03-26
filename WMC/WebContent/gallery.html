@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Whitehall Mennonite Church</title>
+</head>
+
+<body onload="setRequestedOption()">
+
+<script type="text/javascript" src="commonlib.js"></script>
+
+<script type="text/javascript">
+
+function setGalleryElement(option)
+{
+	var gallery = document.getElementById("gallery");
+	switch (option) {
+	case "galp1":
+		gallery.innerHTML="<embed type=\"application/x-shockwave-flash\" src=\"http://picasaweb.google.com/s/c/bin/slideshow.swf\" width=\"750\" height=\"570\" flashvars=\"host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F105125549268286919797%2Falbumid%2F5439699975314371681%3Falt%3Drss%26kind%3Dphoto%26hl%3Den_US\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>";
+		break;
+	case "galp2":
+		gallery.innerHTML="<embed type=\"application/x-shockwave-flash\" src=\"http://picasaweb.google.com/s/c/bin/slideshow.swf\" width=\"750\" height=\"570\" flashvars=\"host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F105125549268286919797%2Falbumid%2F5441561720662301073%3Falt%3Drss%26kind%3Dphoto%26hl%3Den_US\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>";
+		break;
+	case "galp3":
+		gallery.innerHTML="<embed type=\"application/x-shockwave-flash\" src=\"https://picasaweb.google.com/s/c/bin/slideshow.swf\" width=\"750\" height=\"570\" flashvars=\"host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F105125549268286919797%2Falbumid%2F5706991942470099009%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCIiy_s3PvtWdUA%26hl%3Den_US\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>";
+		break;
+	case "galp4":
+		gallery.innerHTML="<embed type=\"application/x-shockwave-flash\" src=\"https://picasaweb.google.com/s/c/bin/slideshow.swf\" width=\"750\" height=\"570\" flashvars=\"host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F105125549268286919797%2Falbumid%2F5756491808679882177%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCPie_bKKhaTVVA%26hl%3Den_US\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>";
+		break;
+	case "galv1":
+		gallery.innerHTML="<iframe width=\"750\" height=\"570\" src=\"http://www.youtube.com/embed/XBH_Alvzd9c\" frameborder=\"0\" allowfullscreen></iframe>";
+		break;
+	case "galv2":
+		gallery.innerHTML="<iframe width=\"750\" height=\"570\" src=\"http://www.youtube.com/embed/QlYmaq6wK8I\" frameborder=\"0\" allowfullscreen></iframe>";
+		break;
+	case "galv3":
+		gallery.innerHTML='<iframe src="//player.vimeo.com/video/99491633?autoplay=1" width="750" height="570" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		break;
+	case "galv4":
+		gallery.innerHTML='<iframe src="//player.vimeo.com/video/100556013?autoplay=1" width="750" height="570" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		break;
+	default:
+		gallery.innerHTML="<iframe width=\"750\" height=\"570\" src=\"http://www.youtube.com/embed/QlYmaq6wK8I\" frameborder=\"0\" allowfullscreen></iframe>";
+		option = 'galv2';
+		break;
+	}
+	document.getElementById('li-'+option).className = 'active';
+}
+
+function setRequestedOption() {
+	var about = document.getElementById("about");
+	
+	document.getElementById("mainmenu").innerHTML = mainMenu();
+	document.getElementById("mainmenu-gallery").className = 'active';
+	
+	var parameterName = '?option=';
+	option = window.location.href.substring(window.location.href.indexOf(parameterName, 0)+parameterName.length);
+	setGalleryElement(option);
+}
+
+</script>
+
+<table>
+	<tbody>
+	<tr>
+		<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+		<td>
+			<div id='heading'>Whitehall Mennonite Church</div>
+			<div id='tobepeopleofGod'>
+				To be the people of God, Inviting others to know Him.
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<div id='mainmenu'></div>
+
+<div id='content'>
+
+	<div id='left-menu'>
+		<ul>
+		   <li id='li-galv4'><a href='gallery.html?option=galv4'><span>VBS 2014 (Video)</span></a></li>
+		   <li id='li-galv3'><a href='gallery.html?option=galv3'><span>VBS 2013 (Video)</span></a></li>
+		   <li id='li-galv2'><a href='gallery.html?option=galv2'><span>VBS 2012 (Video)</span></a></li>
+		   <li id='li-galp4'><a href='gallery.html?option=galp4'><span>Pastor Rose Bender's Ordination</span></a></li>
+		   <li id='li-galp3'><a href='gallery.html?option=galp3'><span>Joint Worship Service <br/>Vietnamese New Year 2012</span></a></li>
+		   <li id='li-galv1'><a href='gallery.html?option=galv1'><span>VBS 2011 (Video)</span></a></li>
+		   <li id='li-galp2'><a href='gallery.html?option=galp2'><span>Christmas 2009 <br/>Through the Eyes of a Child</span></a></li>
+		   <li id='li-galp1'><a href='gallery.html?option=galp1'><span>Various Pictures</span></a></li>
+		</ul>
+	</div>
+	
+	<div id='gallery'></div>
+	
+</div>
+</body>
+</html> 

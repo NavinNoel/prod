@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Whitehall Mennonite Church</title>
+</head>
+
+<body onload="setRequestedOption()">
+
+<script type="text/javascript" src="commonlib.js"></script>
+
+<script type="text/javascript">
+
+function setCalendarElement(option)
+{
+	var calendar = document.getElementById("calendar");
+	switch (option) {
+	case "ripple":
+		calendar.innerHTML="<iframe src=\"http://www.google.com/calendar/embed?src=calendar%40ripple-allentown.com&ctz=America/New_York\" style=\"border: 0\" width=\"800\" height=\"560\" frameborder=\"0\" scrolling=\"no\"></iframe>";
+		break;
+	case "franconia":
+		calendar.innerHTML="<iframe src=\"http://www.google.com/calendar/embed?src=calendar%40franconiaconference.org&ctz=America/New_York\" style=\"border: 0\" width=\"800\" height=\"560\" frameborder=\"0\" scrolling=\"no\"></iframe>";
+		break;
+	case "mcusa":
+		calendar.innerHTML="<iframe src=\"http://www.google.com/calendar/embed?src=chrisr%40mennoniteusa.org&ctz=America/New_York\" style=\"border: 0\" width=\"800\" height=\"560\" frameborder=\"0\" scrolling=\"no\"></iframe>";
+		break;
+	default:
+		//calendar.innerHTML="<iframe src=\"http://www.google.com/calendar/embed?mode=MONTH&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=wmc18052%40gmail.com&amp;color=%23A32929&amp;ctz=America%2FNew_York\" style=\" border-width:0 \" width=\"800\" height=\"560\" frameborder=\"0\" scrolling=\"no\"></iframe>";
+		calendar.innerHTML='<iframe src="https://www.google.com/calendar/embed?title=Whitehall%20Mennonite%20Church&amp;height=560&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=skio4g5l2pa5nsioi8pa4s123o%40group.calendar.google.com&amp;color=%23B1440E&amp;src=wmc18052%40gmail.com&amp;color=%2329527A&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="560" frameborder="0" scrolling="no"></iframe>';
+		option = 'wmc';
+		break;
+	}
+	document.getElementById('li-'+option).className = 'active';
+}
+
+function setRequestedOption() {
+	var about = document.getElementById("about");
+	
+	document.getElementById("mainmenu").innerHTML = mainMenu();
+	document.getElementById("mainmenu-calendar").className = 'active';
+	
+	var parameterName = '?option=';
+	option = window.location.href.substring(window.location.href.indexOf(parameterName, 0)+parameterName.length);
+	setCalendarElement(option);
+}
+
+</script>
+
+<table>
+	<tbody>
+	<tr>
+		<td><img src="images/menno_dove.GIF" alt="Peace" width="50" height="50"/></td> 
+		<td>
+			<div id='heading'>Whitehall Mennonite Church</div>
+			<div id='tobepeopleofGod'>
+				To be the people of God, Inviting others to know Him.
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<div id='mainmenu'></div>
+
+<div id='content'>
+
+	<div id='left-menu'>
+		<ul>
+		   <li id='li-wmc'><a href='calendar.html'><span>Whitehall Mennonite Church</span></a></li>
+		   <li id='li-ripple'><a href='calendar.html?option=ripple'><span>Ripple Allentown</span></a></li>
+		   <li id='li-franconia'><a href='calendar.html?option=franconia'><span>Franconia Conference</span></a></li>
+		   <li id='li-mcusa'><a href='calendar.html?option=mcusa'><span>Mennonite Church USA</span></a></li>
+		</ul>
+	</div>
+	
+	<div id='calendar'>
+	</div>
+	
+</div>
+</body>
+</html> 
