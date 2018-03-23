@@ -154,7 +154,7 @@ function setRequestedOption() {
 var podcastItems;
 
 function showAudioPlayer(i) {
-	var url = podcastItems[i].link.replace("entry", "enclosure")+".mp3";
+	var url = podcastItems[i].link.replace("www.podomatic.com/podcasts/whitehallmennonitechurch/episodes", "whitehallmennonitechurch.podomatic.com/enclosure")+".mp3";
     var msgCell = document.getElementById("pctable").getElementsByTagName("tr")[i+1].getElementsByTagName("td")[2];
     var x = msgCell.getElementsByTagName("div");
 	for (var i = 0; i < x.length; i++) {
@@ -245,7 +245,7 @@ function initialize() {
           speakerPicture.appendChild(p1);
           
           tableCell = document.createElement("td");
-          var url = entry.link.replace("entry", "enclosure")+".mp3";
+          var url = entry.link.replace("www.podomatic.com/podcasts/whitehallmennonitechurch/episodes", "whitehallmennonitechurch.podomatic.com/enclosure")+".mp3";
           var l1 = document.createElement("a");
           //l1.setAttribute("href", url);
           l1.appendChild(document.createTextNode(entry.title));
@@ -337,12 +337,6 @@ function initialize() {
 				<td>
 					<a href="itpc://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/ituneslogo.png" height="50"/></a>
 				</td> 
-				<td width="120px" align="center">
-					<a href="http://fusion.google.com/add?feedurl=http://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/googlefeed.png" height="16"/></a>
-				</td>
-				<td>
-					<a href="http://add.my.yahoo.com/rss?url=http://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/yahoofeed.png" height="16"/></a>
-				</td>
 				<td width="50px" align="center">
 					<a href="http://whitehallmennonitechurch.podomatic.com/rss2.xml"><img src="images/rsslogo.jpg" height="30"/></a>
 				</td>
