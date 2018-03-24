@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<title>Sunderganj Mennonite Church</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+	<link href="css/gfdynamicfeedcontrol.css" rel="stylesheet" type="text/css">
+	<link rel="icon" type="image/jpg" href="images/mci-logo.png" />
+	
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+    /*
+    *  How to load a feed via the Feeds API.
+    */
+    
+    google.load("feeds", "1");
+    
+    // Our callback function, for when a feed is loaded.
+    function feedLoaded(result) {
+      if (!result.error) {
+        // Grab the container we will put the results into
+        var container = document.getElementById("sundayinfo");
+        container.innerHTML = '';
+        var dataError = false;
+    	
+        // Loop through the feeds, putting the titles onto the page.
+        // Check out the result object for a list of properties returned in each entry.
+        // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
+        for (var i = 0; i < result.feed.entries.length; i++) {
+          var entry = result.feed.entries[i];
+          if ((entry.content.search("#REF!") > 0) || (entry.content == '')) {
+        	  dataError = false;
+        	  //break;
+          }
+          else {
+              var div = document.createElement("div");
+              if (entry.title == 'Sunday') {
+            	  var dateStr = (new Date(entry.content.slice(7))).toDateString().slice(4);
+                  div.appendChild(document.createTextNode('Sunday, '+dateStr));
+              }
+              else {
+                  div.appendChild(document.createTextNode(entry.title+': '+entry.content.slice(7)));
+              }
+              container.appendChild(div);
+          }
+        }
+        if (dataError) { 
+        	container.innerHTML = '';
+        }
+        else {
+            var hr = document.createElement("hr");
+            //container.appendChild(hr);
+        }
+      }
+    }
+    
+    function OnLoad() {
+      // Create a feed instance that will grab WMC's feed.
+      var feed = new google.feeds.Feed("https://spreadsheets.google.com/feeds/list/0AkB5mCLZKMSNdDNfVTZsSk8xbTBtWkh6NnBmbGlfVFE/od6/public/basic?alt=rss"
+    		                             +"&x="+(new Date()).getTime());
+      feed.setNumEntries(100);
+    
+      // Calling load sends the request off.  It requires a callback function.
+      feed.load(feedLoaded);
+    }
+    
+    google.setOnLoadCallback(OnLoad);
+    </script>
+
+</head>
+
+<body onload="setRequestedOption()">
+
+	<script type="text/javascript" src="commonlib.js"></script>
+	
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	<script type="text/javascript">
+	
+	var Pic = new Array() 
+	
+	Pic[0] = 'images/headerpic.jpg'
+	Pic[1] = 'images/headerpic.jpg'
+	
+	//I’ve given you four pictures there, but of course if you wanted more you’d simply add Pic[4] = ‘YourImage/pic5.jpg’ and so on. 
+	
+	//Set slideShowSpeed (milliseconds) – make it quicker or slower by adjusting this figure: 
+	var slideShowSpeed = 5000
+	
+	//Duration of crossfade (seconds) – make the fade from one image to another quicker or slower by adjusting this figure:
+	var crossFadeDuration = 2
+	
+	//No need to edit
+	var t
+	var j = 0
+	var p = Pic.length
+	
+	var preLoad = new Array()
+	for (i = 0; i < p; i++){
+		preLoad[i] = new Image() 
+		preLoad[i].src = Pic[i] 
+	}
+	
+	function runSlideShow(){
+	
+		if (document.all){ 
+			document.images.SlideShow.style.filter= "blendTrans(duration=2)"
+			document.images.SlideShow.style.filter= "blendTrans(duration=crossFadeDuration)"
+			document.images.SlideShow.filters.blendTrans.Apply() 
+		 } 
+		document.images.SlideShow.src = preLoad[j].src 
+		if (document.all){ 
+			document.images.SlideShow.filters.blendTrans.Play() 
+		} 
+		j = j + 1 
+		if (j > (p-1)) j=0
+		t = setTimeout('runSlideShow()', slideShowSpeed) 
+	}
+	
+
+	function setRequestedOption() {
+		document.getElementById("headertitle").innerHTML = headerContent();
+		document.getElementById("mainmenu").innerHTML = mainMenu();
+		document.getElementById("mainmenu-home").className = 'active';
+		//runSlideShow();
+		rotate = false;
+		//drawDove();
+		//var canvas = document.getElementById('play');
+		//var imgURL = canvas.toDataURL();
+		//document.getElementById('dove').src = imgURL;
+	}
+	
+	</script>
+
+	<div id='outerframe'>
+		<div id='headerframe'>
+			<div id='headertitle'></div>
+			<div id='mainmenu'></div>
+		</div>
+		
+		<div id='homeleft'>
+			<div id='pastor' title="Pastor">
+				<div id='h3-brown'>Pastor</div>
+				<div id='h3-body'>
+				Rev. Akshay Joseph<br />
+				Dak Banglow ward, Dhamtari<br/>
+				Phone: 09424132669<br/>
+				<a href="mailto:sunderganjmc@gmail.com">sunderganjmc@gmail.com</a><br />
+				</div>
+			</div>
+			
+			<div id='facebook-find'>
+			 <a href="http://www.facebook.com/SunderganjMennoniteChurch">
+				<img alt="Find us on Facebook at http://www.facebook.com/SunderganjMennoniteChurch" src="images/fb-icon.jpg" width=40px border="none">
+			 </a>
+			</div>
+			
+			<div id='facebook-link' >
+				<div class="fb-like" data-href="http://www.facebook.com/SunderganjMennoniteChurch" data-send="true" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+			</div>
+			
+			<div id='churchjpg' align="center">
+				<a href="findus.html">
+				<img src="images/DhamtariChurch.jpg" alt="Church" width=100% />
+				</a>
+			</div>
+		
+			<div id='address' title="Address">
+				<div id='h3-orange'>Address</div>
+				<div id='h3-body'>
+				<address>
+				<a href="findus.html">
+				Sunderganj Mennonite Church<br />
+				Baster Road, Dhamtari,<br />
+				CG-493773, India<br />
+				</a>
+				</address>
+				<a class='email' href="mailto:sunderganjmc@gmail.com">sunderganjmc@gmail.com</a>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div id='homecontent'>
+		
+			<div id='other-ministries'>
+				<div id='h3-darkorange'>Events</div>
+				<div id='h3-body'>
+				<div id='upcomingevents'>
+					<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=210&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=sunderganjmc%40gmail.com&amp;color=%23333333&amp;ctz=America%2FNew_York" style=" border-width:0 " width="100%" height="210" frameborder="0" scrolling="no"></iframe>
+				</div>
+			</div>
+			
+			</div>
+			
+			<div id='sunday-morning'>
+				<div id='h3-blue'>Worship with us</div>
+				<div id='h3-body'>
+				
+				<div id="sundayinfo" align="center"></div>
+				
+				<p align="center">8:00 am, Sunday School; 9:30 am, Worship Service</p>
+				<hr>
+				<p>
+					Youth Fellowship on Sundays at 6:30 pm<br/>
+					Cottage prayer meeting on Tuesdays & Thursdays at 7:00 pm<br/>
+					Women's Fellowship on Saturdays at 6:00 pm<br/>
+					Choir Practice on Saturdays at 6:30 pm
+				</p>
+				
+				</div>
+			</div>
+			
+			<div id='allwelcome'>
+				<p>All are welcome to join us for Sunday morning worship, Sunday school or Other activities.</p>
+			</div>
+			
+			<div id='newsfeed' title="News feeds">
+				<hr>
+				<strong>News Feed</strong>
+				<!-- start sw-rss-feed code --> 
+				<script type="text/javascript"> 
+				<!-- 
+				rssfeed_url = new Array(); 
+				rssfeed_url[0]="http://www.mennoniteusa.org/category/news/feed"; rssfeed_url[1]="http://franconiaconference.org/feed";  
+				rssfeed_frame_width="100%"; 
+				rssfeed_frame_height="400"; 
+				rssfeed_scroll="on"; 
+				rssfeed_scroll_step="6"; 
+				rssfeed_scroll_bar="off"; 
+				rssfeed_target="_blank"; 
+				rssfeed_font_size="12"; 
+				rssfeed_font_face=""; 
+				rssfeed_border="on"; 
+				rssfeed_css_url="http://feed.surfing-waves.com/css/style4.css"; 
+				rssfeed_title="on"; 
+				rssfeed_title_name=""; 
+				rssfeed_title_bgcolor="#3366ff"; 
+				rssfeed_title_color="#fff"; 
+				rssfeed_title_bgimage="http://"; 
+				rssfeed_footer="off"; 
+				rssfeed_footer_name="rss feed"; 
+				rssfeed_footer_bgcolor="#fff"; 
+				rssfeed_footer_color="#333"; 
+				rssfeed_footer_bgimage="http://"; 
+				rssfeed_item_title_length="50"; 
+				rssfeed_item_title_color="#666"; 
+				rssfeed_item_bgcolor="#fff"; 
+				rssfeed_item_bgimage="http://"; 
+				rssfeed_item_border_bottom="on"; 
+				rssfeed_item_source_icon="off"; 
+				rssfeed_item_date="off"; 
+				rssfeed_item_description="on"; 
+				rssfeed_item_description_length="120"; 
+				rssfeed_item_description_color="#666"; 
+				rssfeed_item_description_link_color="#333"; 
+				rssfeed_item_description_tag="off"; 
+				rssfeed_no_items="0"; 
+				rssfeed_cache = "3e5e27257dc730c1beb5762e4dd9ec08"; 
+				//--> 
+				</script> 
+				<script type="text/javascript" src="http://feed.surfing-waves.com/js/rss-feed.js"></script> 
+				<!-- The link below helps keep this service FREE, and helps other people find the SW widget. Please be cool and keep it! Thanks. --> 
+				<div style="text-align:right; width:180px;"><a href="http://www.surfing-waves.com/feed.htm" target="_blank" style="color:#ccc;font-size:10px">widget @</a> <a href="http://www.surfing-waves.com" target="_blank" style="color:#ccc;font-size:10px">surfing-waves.com</a></div> 
+				<!-- end sw-rss-feed code -->
+
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html> 

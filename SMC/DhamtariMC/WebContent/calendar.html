@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Whitehall Mennonite Church</title>
+</head>
+
+<body onload="setRequestedOption()">
+
+<script type="text/javascript" src="commonlib.js"></script>
+
+<script type="text/javascript">
+
+function setCalendarElement(option)
+{
+	var calendar = document.getElementById("calendar");
+	switch (option) {
+	case "mcusa":
+		calendar.innerHTML="<iframe src=\"http://www.google.com/calendar/embed?src=chrisr%40mennoniteusa.org&ctz=America/New_York\" style=\"border: 0\" width=\"800\" height=\"560\" frameborder=\"0\" scrolling=\"no\"></iframe>";
+		break;
+	default:
+		calendar.innerHTML='<iframe src="https://www.google.com/calendar/embed?showCalendars=0&amp;height=560&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=sunderganjmc%40gmail.com&amp;color=%232F6309&amp;ctz=Asia%2FCalcutta" style=" border-width:0 " width="800" height="560" frameborder="0" scrolling="no"></iframe>';
+		option = 'smc';
+		break;
+	}
+	document.getElementById('li-'+option).className = 'active';
+}
+
+function setRequestedOption() {
+	var about = document.getElementById("about");
+	
+	document.getElementById("headertitle").innerHTML = headerContent();
+	document.getElementById("mainmenu").innerHTML = mainMenu();
+	document.getElementById("mainmenu-calendar").className = 'active';
+	
+	rotate = false;
+	drawDove();
+	
+	var parameterName = '?option=';
+	option = window.location.href.substring(window.location.href.indexOf(parameterName, 0)+parameterName.length);
+	setCalendarElement(option);
+}
+
+</script>
+
+	<div id='outerframe'>
+		<div id='headerframe'>
+			<div id='headertitle'></div>
+			<div id='mainmenu'></div>
+		</div>
+		
+
+<div id='content'>
+
+	<div id='calendar'>
+	</div>
+	
+</div>
+</div>
+</body>
+</html> 

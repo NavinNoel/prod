@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+	
+	<title>Sunderganj Mennonite Church</title>
+
+</head>
+
+<body onload="setRequestedOption()">
+
+	<script type="text/javascript" src="commonlib.js"></script>
+	
+	<script type="text/javascript">
+	
+		function setRequestedOption() {
+			
+			document.getElementById("headertitle").innerHTML = headerContent();
+			document.getElementById("mainmenu").innerHTML = mainMenu();
+			document.getElementById("mainmenu-gallery").className = 'active';
+			
+			rotate = false;
+			drawDove();
+		}
+	
+	</script>
+	
+	<script src="//connect.facebook.net/en_US/all.js"></script>
+	<script type="text/javascript">
+		function popupwindow(url, title) {
+			  var left = (screen.width*0.1);
+			  var top = (screen.height*0.02);
+			  var w = 760; //(screen.width*0.8);
+			  var h = (screen.height*0.84);
+			  return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+		}
+		FB.api('/SunderganjMennoniteChurch/albums', function(response) {
+			var container = document.getElementById("content");
+			container = container.appendChild(document.createElement('table'));
+			container.setAttribute('id', 'fbalbum-tab');
+			container = container.appendChild(document.createElement('tbody'));
+			var th = container.appendChild(document.createElement('th'));
+			for (i=0; i < response.data.length;) {
+				var tabRow = container.appendChild(document.createElement('tr'));
+				for (j=0; (j < 5 && i < response.data.length); j++) {
+					var tabRowCol = tabRow.appendChild(document.createElement('td'));
+					var albumName = tabRowCol.appendChild(document.createElement('p'));
+					albumName.innerHTML = response.data[i].name;
+					var coverPhoto = tabRowCol.appendChild(document.createElement('div'));
+					coverPhoto.setAttribute('id',response.data[i].cover_photo);
+					if (response.data[i].description) {
+						coverPhoto.setAttribute('title',response.data[i].description);
+					}
+					FB.api('/'+response.data[i].cover_photo, function(response1) {
+						var tabCell = document.getElementById(response1.id);
+						var imgLink = tabCell.appendChild(document.createElement('a'));
+						imgLink.setAttribute('onclick', 'popupwindow("'+response1.link+'","PhotoAlbum")');
+						var img = imgLink.appendChild(document.createElement('img'));
+						img.setAttribute('src', response1.picture);
+					});
+					var photoCount = tabRowCol.appendChild(document.createElement('p'));
+					photoCount.innerHTML = response.data[i].count + ' Photos';
+					i++;
+				}
+			}
+		});	
+	</script>
+	
+	<div id='outerframe'>
+		<div id='headerframe'>
+			<div id='headertitle'></div>
+			<div id='mainmenu'></div>
+		</div>
+		
+	
+	<div id='content'>
+	</div>
+	</div>
+	
+</body>
+</html> 

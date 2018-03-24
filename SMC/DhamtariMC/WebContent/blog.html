@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Sunderganj Mennonite Church</title>
+</head>
+
+<body onload="setRequestedOption()">
+
+<script type="text/javascript" src="commonlib.js"></script>
+
+<script type="text/javascript">
+
+function setRequestedOption() {
+	document.getElementById("headertitle").innerHTML = headerContent();
+	document.getElementById("mainmenu").innerHTML = mainMenu();
+	document.getElementById("mainmenu-blog").className = 'active';
+	rotate = false;
+	drawDove();
+}
+
+</script>
+
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+    /*
+    *  How to load a feed via the Feeds API.
+    */
+    
+    google.load("feeds", "1");
+    
+    // Our callback function, for when a feed is loaded.
+    function feedLoaded(result) {
+      if (!result.error) {
+        // Grab the container we will put the results into
+        var container = document.getElementById("blog-content");
+        container.innerHTML = '';
+    
+        // Loop through the feeds, putting the titles onto the page.
+        // Check out the result object for a list of properties returned in each entry.
+        // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
+        for (var i = 0; i < result.feed.entries.length; i++) {
+          var entry = result.feed.entries[i];
+          var div = document.createElement("h3");
+          div.setAttribute('id', 'blog-title');
+          container.appendChild(div);
+          var p = document.createElement("p");
+          //div.appendChild(p);
+          div.appendChild(document.createTextNode(entry.title));
+          var content = document.createElement("div");
+          content.setAttribute('id', 'h3-body');
+          content.innerHTML = entry.content;
+          container.appendChild(content);
+        }
+      }
+    }
+    
+    function OnLoad() {
+      // Create a feed instance that will grab WMC's Blog feed.
+      var feed = new google.feeds.Feed("http://wmcfun.blogspot.com/feeds/posts/full");
+      feed.setNumEntries(50);
+      
+      // Calling load sends the request off.  It requires a callback function.
+      feed.load(feedLoaded);
+    }
+    
+    //google.setOnLoadCallback(OnLoad);
+    </script>
+    
+	<div id='outerframe'>
+		<div id='headerframe'>
+			<div id='headertitle'></div>
+			<div id='mainmenu'></div>
+		</div>
+
+<div id='blog-content'></div>
+<div id='blog'>
+	<iframe width="900" height="580" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" src="http://sunderganjmc.blogspot.com"></iframe><br />
+</div>
+</div>
+</body>
+</html> 
