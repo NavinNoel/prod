@@ -228,8 +228,8 @@ function initialize() {
           tableRow = document.createElement("tr");
           
           tableCell = document.createElement("td");
-          //var pubDate = new Date(entry.publishedDate);
-          var pubDate = new Date(entry.link.substring(52,62)+' EST');
+          var pubDate = new Date(entry.publishedDate);
+          //var pubDate = new Date(entry.link.substring(52,62)+' EST');
           
           tableCell.appendChild(document.createTextNode(pubDate.toDateString()));
           tableCell.setAttribute("width", "110px");
