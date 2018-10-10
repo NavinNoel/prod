@@ -14,7 +14,6 @@ function mainMenu() {
 			+"   </li>"
 			+"   <li id='mainmenu-bulletin'><a href='bulletin.html'><span>Bulletin</span></a></li>"
 			+"   <li id='mainmenu-calendar'><a href='calendar.html'><span>Calendar</span></a></li>"
-			+"   <li id='mainmenu-blog'><a href='blog.html'><span>Blog</span></a></li>"
 			+"   <li id='mainmenu-resources'><a href='links.html'><span>Resources</span></a></li>"
 			+"   <li id='mainmenu-gallery'><a href='fbalbums.html'><span>Gallery</span></a>"
 			+"     <ul class=l1>"
