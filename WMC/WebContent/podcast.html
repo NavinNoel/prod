@@ -125,7 +125,7 @@ function setGalleryElement(option)
 	switch (option) {
 	case "PLAY":
 		$("#PLAY").addClass("selected");
-		$("#podcast-feed").html("<iframe src='http://whitehallmennonitechurch.podomatic.com/embed/frame/multi/0?json_url=http%3A%2F%2Fwhitehallmennonitechurch.podomatic.com%2Fembed%2Fmulti%2F0%3Fcolor%3Df8ae06%26autoPlay%3Dfalse%26facebook%3Dfalse%26height%3D405%26objembed%3D0%26width%3D540' height='405' width='540' frameborder='0' marginheight='0' marginwidth='0' scrolling='no'></iframe>");
+	  $("#podcast-feed").html("<iframe src='https://www.podomatic.com/embed/html5/podcast/2733302?style=normal&amp;autoplay=false' allowfullscreen='true' allow='autoplay; fullscreen' style='width: 504px; height: 208px;'></iframe>");
 		break;
 	case "DOWNLOAD":
 		$("#DOWNLOAD").addClass("selected");
@@ -133,7 +133,7 @@ function setGalleryElement(option)
 		break;
 	default:
 		$("#PLAY").addClass("selected");
-	  $("#podcast-feed").html("<iframe src='http://whitehallmennonitechurch.podomatic.com/embed/frame/multi/0?json_url=http%3A%2F%2Fwhitehallmennonitechurch.podomatic.com%2Fembed%2Fmulti%2F0%3Fcolor%3Df8ae06%26autoPlay%3Dfalse%26facebook%3Dfalse%26height%3D405%26objembed%3D0%26width%3D540' height='405' width='540' frameborder='0' marginheight='0' marginwidth='0' scrolling='no'></iframe>");
+	  $("#podcast-feed").html("<iframe src='https://www.podomatic.com/embed/html5/podcast/2733302?style=normal&amp;autoplay=false' allowfullscreen='true' allow='autoplay; fullscreen' style='width: 504px; height: 208px;'></iframe>");
 		option = 'play';
 		break;
 	}
